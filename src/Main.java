@@ -1,21 +1,35 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // Welcome Message
         System.out.println("=== Train Consist Management App ===");
 
-        // Initialize Train Consist (Empty List)
-        List<String> trainConsist = new ArrayList<>();
+        // Array of passenger bogie capacities
+        int[] capacities = {72, 56, 24, 70, 60};
 
-        // Display Initial Bogie Count
-        System.out.println("Train initialized successfully.");
-        System.out.println("Initial bogie count: " + trainConsist.size());
+        System.out.println("\nBefore Sorting:");
+        System.out.println(Arrays.toString(capacities));
 
-        // Program continues...
-        System.out.println("System ready for further operations...");
+        // Bubble Sort Algorithm
+        int n = capacities.length;
+
+        for (int i = 0; i < n - 1; i++) {
+
+            for (int j = 0; j < n - i - 1; j++) {
+
+                if (capacities[j] > capacities[j + 1]) {
+
+                    // Swap
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.println("\nAfter Sorting (Bubble Sort):");
+        System.out.println(Arrays.toString(capacities));
     }
 }
