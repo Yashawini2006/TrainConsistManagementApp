@@ -1,21 +1,47 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// Bogie class
+class Bogie {
+    String name;
+    int capacity;
+
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    @Override
+    public String toString() {
+        return name + " -> " + capacity;
+    }
+}
+
 public class Main {
 
     public static void main(String[] args) {
 
-        // Welcome Message
         System.out.println("=== Train Consist Management App ===");
 
-        // Initialize Train Consist (Empty List)
-        List<String> trainConsist = new ArrayList<>();
+        // List of bogies
+        List<Bogie> bogies = new ArrayList<>();
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 40));
 
-        // Display Initial Bogie Count
-        System.out.println("Train initialized successfully.");
-        System.out.println("Initial bogie count: " + trainConsist.size());
+        System.out.println("\nAll Bogies:");
+        System.out.println(bogies);
 
-        // Program continues...
-        System.out.println("System ready for further operations...");
+        // Calculate total capacity using Stream
+        int totalSeats = bogies.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
+
+        System.out.println("\nTotal Seating Capacity:");
+        System.out.println(totalSeats);
+
+        // Original list unchanged
+        System.out.println("\nOriginal list remains unchanged:");
+        System.out.println(bogies);
     }
 }
