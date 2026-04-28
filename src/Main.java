@@ -1,21 +1,49 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
+    // Method to search bogie
+    public static boolean searchBogie(String[] bogieIDs, String key) {
+
+        // ✅ Fail-fast check
+        if (bogieIDs.length == 0) {
+            throw new IllegalStateException("No bogies available in the train. Cannot perform search.");
+        }
+
+        // Linear Search
+        for (String id : bogieIDs) {
+            if (id.equals(key)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
 
-        // Welcome Message
         System.out.println("=== Train Consist Management App ===");
 
-        // Initialize Train Consist (Empty List)
-        List<String> trainConsist = new ArrayList<>();
+        // Example: change this to {} to test exception
+        String[] bogieIDs = {"BG101", "BG205", "BG309"};
 
-        // Display Initial Bogie Count
-        System.out.println("Train initialized successfully.");
-        System.out.println("Initial bogie count: " + trainConsist.size());
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter Bogie ID to search: ");
+        String key = scanner.nextLine();
 
-        // Program continues...
-        System.out.println("System ready for further operations...");
+        try {
+            boolean found = searchBogie(bogieIDs, key);
+
+            if (found) {
+                System.out.println("Bogie ID " + key + " FOUND.");
+            } else {
+                System.out.println("Bogie ID " + key + " NOT FOUND.");
+            }
+
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        scanner.close();
     }
 }
